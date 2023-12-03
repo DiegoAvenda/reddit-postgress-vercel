@@ -9,5 +9,5 @@ export const load = async ({ locals }) => {
     where: { email: locals.user.email },
     select: { name: true, posts: true },
   })
-  return userPosts
+  return { userPosts }
 }

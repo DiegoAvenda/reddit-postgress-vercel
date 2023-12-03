@@ -26,7 +26,7 @@
       <li>
         <a href="/bio" class="justify-between"> Bio </a>
       </li>
-      <li><a>Logout</a></li>
+      <li><a href="/">Logout</a></li>
     </ul>
   </div>
 </div>
