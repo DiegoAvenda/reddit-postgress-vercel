@@ -6,6 +6,7 @@
   <div class="flex-1">
     <a href="/" class="btn btn-ghost text-xl">daisyUI</a>
     <a href="/signup" class="btn btn-ghost text-xl">Signup</a>
+    <a href="/posts" class="btn btn-ghost text-xl">Posts</a>
   </div>
 
   <div class="dropdown dropdown-end">
