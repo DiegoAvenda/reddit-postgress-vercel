@@ -23,15 +23,16 @@
 </form>
 
 <br />
-
-{#each data.posts as post}
-  <div class="card w-96 bg-primary text-primary-content">
-    <div class="card-body">
-      <h2 class="card-title">{post.title}</h2>
-      <p>{post.content}</p>
-      <div class="card-actions justify-end">
-        <a href="/posts/{post.id}"><button class="btn">Comment</button></a>
+<div class="flex flex-col gap-2">
+  {#each data.posts as post}
+    <div class="card w-96 bg-primary text-primary-content">
+      <div class="card-body">
+        <h2 class="card-title">{post.title}</h2>
+        <p>{post.content}</p>
+        <div class="card-actions justify-end">
+          <a href="/posts/{post.id}"><button class="btn">Comment</button></a>
+        </div>
       </div>
     </div>
-  </div>
-{/each}
+  {/each}
+</div>

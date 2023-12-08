@@ -4,7 +4,7 @@
 
 <div class="navbar bg-base-100">
   <div class="flex-1">
-    <a href="/" class="btn btn-ghost text-xl">daisyUI</a>
+    <a href="/" class="btn btn-ghost text-xl">Home</a>
     <a href="/signup" class="btn btn-ghost text-xl">Signup</a>
     <a href="/posts" class="btn btn-ghost text-xl">Posts</a>
   </div>
@@ -12,10 +12,7 @@
   <div class="dropdown dropdown-end">
     <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
       <div class="w-10 rounded-full">
-        <img
-          alt="Tailwind CSS Navbar component"
-          src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-        />
+        <img alt="user" src={image} />
       </div>
     </div>
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->

@@ -1,3 +1,3 @@
 <form method="POST">
-	<button type="submit">Login with Google</button>
+  <button class="btn" type="submit">Login with Google</button>
 </form>

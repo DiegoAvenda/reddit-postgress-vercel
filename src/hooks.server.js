@@ -10,14 +10,14 @@ export async function handle({ event, resolve }) {
 
   const user = await prisma.user.findUnique({
     where: { userAuthToken: session },
-    select: { email: true, name: true, id: true },
+    select: { email: true, name: true, id: true, image: true },
   })
 
   if (user) {
     event.locals.user = {
       email: user.email,
       name: user.name,
-      picture: user.image,
+      image: user.image,
     }
   }
   return await resolve(event)

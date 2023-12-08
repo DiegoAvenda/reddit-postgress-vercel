@@ -4,5 +4,5 @@
   import Navbar from '../lib/components/Navbar.svelte'
 </script>
 
-<Navbar imagen={data.fotos} />
+<Navbar image={data.image} />
 <slot />

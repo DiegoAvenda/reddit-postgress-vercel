@@ -1,10 +1,12 @@
 export const load = async (event) => {
-  let fotos
+  let image
   if (event.locals.user) {
-    fotos = event.locals.user.picture
+    image = event.locals.user.image
+    console.log('user image: ', image)
   } else {
-    fotos =
+    image =
       'https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'
   }
-  return { fotos }
+
+  return { image }
 }
