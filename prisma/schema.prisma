@@ -52,6 +52,7 @@ model Like {
   comment Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
   userId String
   commentId String
+  gusta Boolean @default(false)
 
   @@id([userId, commentId])
 }

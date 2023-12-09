@@ -18,7 +18,6 @@
           class="input input-bordered input-primary w-full max-w-xs"
         />
         <button type="submit" class="btn btn-primary">comment</button>
-        <button class="btn btn-ghost">Like</button>
       </form>
     </div>
   </div>
@@ -33,15 +32,29 @@
           <form method="POST" action="?/commentComment">
             <input type="hidden" name="postId" value={post.id} />
             <input type="hidden" name="parentId" value={parent.id} />
+            <input type="hidden" name="userId" value={parent.userId} />
             <input
               type="text"
               name="message"
               placeholder="Leave a comment"
               class="input input-bordered input-primary w-full max-w-xs"
             />
-            <button class="btn btn-ghost">Like</button>
             <button type="submit" class="btn btn-primary">comment</button>
+            <input
+              type="text"
+              name="editedText"
+              placeholder="Edit comment"
+              class="input input-bordered input-primary w-full max-w-xs"
+            />
+            <input type="hidden" name="userEmail" value={parent.user.email} />
+            <button class="btn btn-primary" formaction="?/editComment"
+              >Edit</button
+            >
+            <button formaction="?/like" class="btn btn-ghost">Like</button>
+            <button formaction="?/dislike" class="btn btn-ghost">Dislike</button
+            >
           </form>
+          <p>Likes: {parent.likes.length}</p>
         </div>
       </div>
     </div>
@@ -55,15 +68,20 @@
               <form method="POST" action="?/commentComment">
                 <input type="hidden" name="postId" value={post.id} />
                 <input type="hidden" name="parentId" value={son.id} />
+                <input type="hidden" name="userId" value={son.userId} />
                 <input
                   type="text"
                   name="message"
                   placeholder="Leave a comment"
                   class="input input-bordered input-primary w-full max-w-xs"
                 />
-                <button class="btn btn-ghost">Like</button>
+                <button formaction="?/like" class="btn btn-ghost">Like</button>
+                <button formaction="?/dislike" class="btn btn-ghost"
+                  >Dislike</button
+                >
                 <button type="submit" class="btn btn-primary">comment</button>
               </form>
+              <p>Likes: {son.likes.length}</p>
             </div>
           </div>
         </div>
@@ -74,7 +92,18 @@
               <div class="card-body">
                 <h2 class="card-title">{nieto.message}</h2>
                 <div class="card-actions justify-end">
-                  <button class="btn btn-ghost">Like</button>
+                  <form method="POST" action="?/commentComment">
+                    <input type="hidden" name="postId" value={post.id} />
+                    <input type="hidden" name="parentId" value={nieto.id} />
+                    <input type="hidden" name="userId" value={nieto.userId} />
+                    <button formaction="?/like" class="btn btn-ghost"
+                      >Like</button
+                    >
+                    <button formaction="?/dislike" class="btn btn-ghost"
+                      >Dislike</button
+                    >
+                  </form>
+                  <p>Likes: {nieto.likes.length}</p>
                 </div>
               </div>
             </div>
