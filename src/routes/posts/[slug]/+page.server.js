@@ -1,9 +1,16 @@
 import prisma from '$lib/utils/prisma'
+import { redirect } from '@sveltejs/kit'
 
-export const load = async ({ params }) => {
+export const load = async ({ params, locals }) => {
+  let userEmail
+  if (locals.user) {
+    userEmail = locals.user.email
+  }
+
   const comments = await prisma.post.findUnique({
     where: { id: params.slug },
     include: {
+      author: true,
       comments: {
         where: { parentId: null },
         include: {
@@ -20,11 +27,15 @@ export const load = async ({ params }) => {
       },
     },
   })
-  return { comments }
+  return { comments, userEmail }
 }
 
 export const actions = {
   commentPost: async ({ locals, request, params }) => {
+    if (!locals.user) {
+      throw redirect(303, '/signup')
+    }
+
     const data = await request.formData()
     const message = data.get('message')
 
@@ -35,8 +46,14 @@ export const actions = {
         user: { connect: { email: locals.user.email } },
       },
     })
+    return { success: true }
   },
+
   commentComment: async ({ locals, request, params }) => {
+    if (!locals.user) {
+      throw redirect(303, '/signup')
+    }
+
     const data = await request.formData()
     const message = data.get('message')
     const parentId = data.get('parentId')
@@ -49,8 +66,14 @@ export const actions = {
         user: { connect: { email: locals.user.email } },
       },
     })
+    return { success: true }
   },
+
   like: async ({ locals, request }) => {
+    if (!locals.user) {
+      throw redirect(303, '/signup')
+    }
+
     const data = await request.formData()
     const commentId = data.get('parentId')
     try {
@@ -63,8 +86,14 @@ export const actions = {
     } catch (error) {
       console.error(error)
     }
+    return { success: true }
   },
-  dislike: async ({ request }) => {
+
+  dislike: async ({ request, locals }) => {
+    if (!locals.user) {
+      throw redirect(303, '/signup')
+    }
+
     const data = await request.formData()
     const commentId = data.get('parentId')
     const userId = data.get('userId')
@@ -75,7 +104,9 @@ export const actions = {
     } catch (error) {
       console.log(error)
     }
+    return { success: true }
   },
+
   editComment: async ({ locals, request }) => {
     const data = await request.formData()
     const id = data.get('parentId')
@@ -90,5 +121,6 @@ export const actions = {
         },
       })
     }
+    return { success: true }
   },
 }

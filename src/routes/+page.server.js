@@ -5,3 +5,10 @@ export async function load() {
 
   return { users }
 }
+
+export const actions = {
+  logout: async ({ locals, cookies }) => {
+    cookies.delete('session')
+    locals.user = null
+  },
+}

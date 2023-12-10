@@ -1,10 +1,14 @@
 <script>
+  import { enhance } from '$app/forms'
   export let data
+  export let form
 </script>
 
 <h1>Posts</h1>
 
-<form method="POST" action="?/createPost">
+<form method="POST" action="?/createPost" use:enhance>
+  {#if form?.invalid}<p>Both fields are required</p>
+  {/if}
   <input
     class="input w-full max-w-xs"
     id="title"
@@ -19,7 +23,7 @@
     name="content"
     placeholder="Content"
   />
-  <button class="btn" type="submit">send</button>
+  <button class="btn" type="submit">Create</button>
 </form>
 
 <br />
@@ -29,6 +33,7 @@
       <div class="card-body">
         <h2 class="card-title">{post.title}</h2>
         <p>{post.content}</p>
+        <p>By {post.author.name}</p>
         <div class="card-actions justify-end">
           <a href="/posts/{post.id}"><button class="btn">Comment</button></a>
         </div>

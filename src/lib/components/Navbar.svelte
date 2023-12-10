@@ -24,7 +24,11 @@
       <li>
         <a href="/bio" class="justify-between"> Bio </a>
       </li>
-      <li><a href="/">Logout</a></li>
+      <li>
+        <form method="post" action="/?/logout">
+          <button>Logout</button>
+        </form>
+      </li>
     </ul>
   </div>
 </div>
