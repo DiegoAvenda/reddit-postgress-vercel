@@ -123,4 +123,12 @@ export const actions = {
     }
     return { success: true }
   },
+  delete: async ({ request }) => {
+    const data = await request.formData()
+    const id = data.get('parentId')
+
+    await prisma.comment.delete({
+      where: { id },
+    })
+  },
 }

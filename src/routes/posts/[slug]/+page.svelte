@@ -55,6 +55,7 @@
               <button class="btn btn-primary" formaction="?/editComment"
                 >Edit</button
               >
+              <button formaction="?/delete">Delete</button>
             {/if}
             <button formaction="?/like" class="btn btn-ghost">Like</button>
             <button formaction="?/dislike" class="btn btn-ghost">Dislike</button
